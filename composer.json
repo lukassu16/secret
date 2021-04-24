@@ -1,5 +1,6 @@
 {
     "require": {
+        "paragonie/halite": "^4.8",
         "php-di/php-di": "^6.3",
         "ramsey/uuid": "^4.1",
         "selective/basepath": "^2.0",
