@@ -27,7 +27,7 @@ final class SecretCreateAction
 
         // Transform the result into the JSON representation
         $result = [
-            'secret_uuid' => $secretUuid,
+            'secretUrl' => 'http://localhost/api/v1/secret/'.$secretUuid,
         ];
 
         // Build the HTTP response
