@@ -55,4 +55,18 @@ $settings['db'] = [
     ],
 ];
 
+// Twig settings
+$settings['twig'] = [
+    // Template paths
+    'paths' => [
+        __DIR__ . '/../templates',
+    ],
+    // Twig environment options
+    'options' => [
+        // Should be set to true in production
+        'cache_enabled' => false,
+        'cache_path' => __DIR__ . '/../tmp/twig',
+    ],
+];
+
 return $settings;
