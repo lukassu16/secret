@@ -2,9 +2,12 @@
 
 namespace App\Domain\Secret\Repository;
 
-use ParagonIE\Halite\Primitive\Symmetric;
+use ParagonIE\Halite\Symmetric\Crypto as Symmetric;
 use PDO;
 use Ramsey\Uuid\Uuid;
+use ParagonIE\Halite\KeyFactory;
+use ParagonIE\Halite\HiddenString;
+use ParagonIE\Halite\Symmetric\EncryptionKey;
 
 /**
  * Repository.
@@ -36,11 +39,14 @@ class SecretCreatorRepository
     // public function insertSecret(array $secret): string
     public function insertSecret(array $secret)
     {
-        // $encryption_key = EncryptionKey::generate();
-        // $ciphertext = Symmetric::encrypt($secret['secret'], $secret['key']);
+        $key = new HiddenString($secret['key']);
 
-        // $expirationTime = date('Y-m-d H:i:s')
-        //strtotime('+1 hour +20 minutes',strtotime($start))
+        $salt = "\xdd\x7b\x1e\x38\x75\x9f\x72\x86\x0a\xe9\xc8\x58\xf6\x16\x0d\x3b";
+
+        $encryptionKey = KeyFactory::deriveEncryptionKey($key, $salt);
+
+        $message = new HiddenString($secret['secret']);
+        $ciphertext = Symmetric::encrypt($message, $encryptionKey);
 
         $expirationTime = [
             'once' => null,
@@ -52,8 +58,8 @@ class SecretCreatorRepository
 
         $row = [
             'uuid' => Uuid::uuid4(),
-            'sekret' => $secret['secret'],
-            'kod' => $secret['key'],
+            'sekret' => $ciphertext,
+            'klucz' => $secret['key'],
             'typ' => $secret['type'],
             'data_wygasniecia' => $expirationTime,
         ];
@@ -61,13 +67,13 @@ class SecretCreatorRepository
         $sql = 'INSERT INTO secrets SET
                 uuid=:uuid,
                 sekret=:sekret,
-                kod=:kod,
+                klucz=:klucz,
                 typ=:typ,
                 data_wygasniecia=:data_wygasniecia;';
 
         $this->connection->prepare($sql)->execute($row);
 
-        // return (string) $this->connection->lastInsertId('uuid');
         return $row['uuid'];
+        return $encryptionKey->getRawKeyMaterial();
     }
 }

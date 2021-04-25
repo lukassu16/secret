@@ -3,10 +3,10 @@
 use Slim\App;
 
 return function (App $app) {
-    // $app->post(
-    //     '/api/v1/secret/{identyfikator}',
-    //      \App\Action\SecretReadAction::class
-    // );
+    $app->post(
+        '/api/v1/secret/{identyfikator}',
+         \App\Action\SecretReadAction::class
+    );
 
     $app->post(
         '/api/v1/secret',
