@@ -17,4 +17,14 @@ return function (App $app) {
         '/api/v1/cron/deleted_expired',
          \App\Action\ExpiredSecretDeleteAction::class
     );
+
+    $app->get(
+        '/',
+         \App\Action\MainViewAction::class
+    );
+
+    $app->get(
+        '/secret/{identyfikator}',
+         \App\Action\LoadSecretAction::class
+    );
 };
