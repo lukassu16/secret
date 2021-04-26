@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\Secret\Service;
+namespace ShareApp\Domain\Secret\Service;
 
-use App\Domain\Secret\Repository\SecretCreatorRepository;
-use App\Exception\ValidationException;
+use ShareApp\Domain\Secret\Repository\SecretCreatorRepository;
+use ShareApp\Exception\ValidationException;
 
 /**
  * Service.

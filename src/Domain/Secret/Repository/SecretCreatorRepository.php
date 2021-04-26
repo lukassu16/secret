@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Domain\Secret\Repository;
+namespace ShareApp\Domain\Secret\Repository;
 
 use ParagonIE\Halite\Symmetric\Crypto as Symmetric;
 use PDO;
 use Ramsey\Uuid\Uuid;
 use ParagonIE\Halite\KeyFactory;
 use ParagonIE\Halite\HiddenString;
-use ParagonIE\Halite\Symmetric\EncryptionKey;
 
 /**
  * Repository.
@@ -74,6 +73,5 @@ class SecretCreatorRepository
         $this->connection->prepare($sql)->execute($row);
 
         return $row['uuid'];
-        return $encryptionKey->getRawKeyMaterial();
     }
 }

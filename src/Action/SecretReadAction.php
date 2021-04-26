@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Action;
+namespace ShareApp\Action;
 
-use App\Domain\Secret\Service\SecretReader;
+use ShareApp\Domain\Secret\Service\SecretReader;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Secret\Service;
+namespace ShareApp\Domain\Secret\Service;
 
-use App\Domain\Secret\Repository\SecretsDeleterRepository;
+use ShareApp\Domain\Secret\Repository\SecretsDeleterRepository;
 
 /**
  * Service.

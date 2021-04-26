@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Secret\Repository;
+namespace ShareApp\Domain\Secret\Repository;
 
 use PDO;
 

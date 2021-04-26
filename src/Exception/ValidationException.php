@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exception;
+namespace ShareApp\Exception;
 
 use RuntimeException;
 use Throwable;
