@@ -5,26 +5,26 @@ use Slim\App;
 return function (App $app) {
     $app->post(
         '/api/v1/secret/{identyfikator}',
-         \App\Action\SecretReadAction::class
+         SecretReadAction::class
     );
 
     $app->post(
         '/api/v1/secret',
-         \App\Action\SecretCreateAction::class
+         SecretCreateAction::class
     );
 
     $app->delete(
         '/api/v1/cron/deleted_expired',
-         \App\Action\ExpiredSecretDeleteAction::class
+         ExpiredSecretDeleteAction::class
     );
 
     $app->get(
         '/',
-         \App\Action\MainViewAction::class
+         MainViewAction::class
     );
 
     $app->get(
         '/secret/{identyfikator}',
-         \App\Action\LoadSecretAction::class
+         LoadSecretAction::class
     );
 };
